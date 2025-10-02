@@ -1,5 +1,4 @@
 def solution(friends, gifts):
-    answer = 0
     n = len(friends)
     name_to_index = {name: i for i, name in enumerate(friends)}
     gift_matrix =[[0] * n for _ in range(n)]
@@ -29,5 +28,4 @@ def solution(friends, gifts):
                 if gift_index[i] > gift_index[j]:
                     tmp +=1
         fin[i] = tmp
-    answer = max(fin)
-    return answer
+    return max(fin)
