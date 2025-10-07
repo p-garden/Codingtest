@@ -1,34 +1,19 @@
 def solution(survey, choices):
+    scores = {'R': 0, 'T': 0, 'C': 0, 'F': 0, 'J': 0, 'M': 0, 'A': 0, 'N': 0}
+    indicators = [('R', 'T'), ('C', 'F'), ('J', 'M'), ('A', 'N')]
+    for s, c in zip(survey, choices):
+        
+        diff = c - 4
+        
+        if diff < 0:
+            scores[s[0]] += abs(diff)
+        elif diff > 0:
+            scores[s[1]] += diff
+    
     answer = ''
-    answer_list = [0] * 4
-
-    sample = [['R','T'],['C','F'],['J','M'],['A','N']]
-    
-    for i in range(len(survey)):
-        if 'R' in survey[i]:
-            if survey[i][1] == 'R':
-                answer_list[0] += choices[i] - 4
-            else: 
-                answer_list[0] += -(choices[i] - 4)
-        if 'C' in survey[i]:
-            if survey[i][1] == 'C':
-                answer_list[1]  += choices[i] - 4
-            else: 
-                answer_list[1]  += -(choices[i] - 4)
-        if 'J' in survey[i]:
-            if survey[i][1] == 'J':
-                answer_list[2]  += choices[i] - 4
-            else: 
-                answer_list[2]  += -(choices[i] - 4)
-        if 'A' in survey[i]:
-            if survey[i][1] == 'A':
-                answer_list[3]  += choices[i] - 4
-            else: 
-                answer_list[3]  += -(choices[i] - 4)
-    
-    for tmp in range(4):
-        if answer_list[tmp] >=0:
-            answer+=(sample[tmp][0])
+    for type1, type2 in indicators:
+        if scores[type1] >= scores[type2]:
+            answer += type1
         else:
-            answer+=(sample[tmp][1])
+            answer += type2
     return answer
