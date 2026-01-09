@@ -1,7 +1,6 @@
--- 코드를 작성해주세요
--- 코드를 작성해주세요
-select  sum(score) as 'SCORE', EMP_NO,EMP_NAME,POSITION,EMAIL
-    from HR_EMPLOYEES E join HR_GRADE G using (EMP_NO)
-    group by EMP_NO
-    order by sum(score) desc
-    limit 1;
+select sum(b.SCORE)SCORE, b.EMP_NO EMP_NO, a.EMP_NAME EMP_NAME , a.POSITION POSITION , a.EMAIL EMAIL
+    from HR_EMPLOYEES a inner join HR_GRADE b on a.EMP_NO = b.EMP_NO
+    where b.YEAR = 2022
+    group by b.EMP_NO
+    order by SCORE desc LIMIT 1;
+    
