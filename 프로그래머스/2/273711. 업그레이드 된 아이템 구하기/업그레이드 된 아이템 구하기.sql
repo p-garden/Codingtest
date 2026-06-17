@@ -1,5 +1,4 @@
--- 코드를 작성해주세요
-SELECT I.ITEM_ID, I.ITEM_NAME, I.RARITY
-    FROM ITEM_INFO I inner join ITEM_TREE T on I.ITEM_ID = T.ITEM_ID
-    WHERE PARENT_ITEM_ID in (select ITEM_ID FROM ITEM_INFO where RARITY = 'RARE')
-    order by ITEM_ID desc;
+select i.ITEM_ID, i.ITEM_NAME, i.RARITY
+    from ITEM_INFO i inner join ITEM_TREE t on i.ITEM_ID = t.ITEM_ID
+    where t.PARENT_ITEM_ID in (select ITEM_ID from ITEM_INFO where RARITY = 'RARE')
+    order by i.ITEM_ID desc;
