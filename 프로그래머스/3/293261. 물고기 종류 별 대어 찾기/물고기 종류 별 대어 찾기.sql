@@ -1,4 +1,5 @@
-select a.ID, b.FISH_NAME, a.LENGTH
-    from FISH_INFO a join FISH_NAME_INFO b on a.FISH_TYPE = b.FISH_TYPE
-    where (a.FISH_TYPE, a.LENGTH) in (select FISH_TYPE, max(LENGTH) from FISH_INFO group by FISH_TYPE)
-    order by a.ID asc;
+select i.ID, n.FISH_NAME, i.LENGTH 
+    from FISH_INFO i inner join FISH_NAME_INFO n on i.FISH_TYPE = n.FISH_TYPE
+    where (i.LENGTH, i.FISH_TYPE) in (select max(LENGTH),FISH_TYPE from FISH_INFO group by FISH_TYPE)
+    group by i.FISH_TYPE
+    order by i.ID asc;
