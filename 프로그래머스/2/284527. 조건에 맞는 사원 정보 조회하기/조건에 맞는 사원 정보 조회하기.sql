@@ -1,6 +1,6 @@
-select sum(b.SCORE)SCORE, b.EMP_NO EMP_NO, a.EMP_NAME EMP_NAME , a.POSITION POSITION , a.EMAIL EMAIL
-    from HR_EMPLOYEES a inner join HR_GRADE b on a.EMP_NO = b.EMP_NO
-    where b.YEAR = 2022
-    group by b.EMP_NO
+select  sum(g.SCORE) SCORE, e.EMP_NO, e.EMP_NAME,e.POSITION, e.EMAIL
+    from HR_DEPARTMENT h inner join 
+        HR_EMPLOYEES e on h.DEPT_ID = e.DEPT_ID inner join
+        HR_GRADE g on e.EMP_NO=g.EMP_NO
+    group by EMP_NO
     order by SCORE desc LIMIT 1;
-    
