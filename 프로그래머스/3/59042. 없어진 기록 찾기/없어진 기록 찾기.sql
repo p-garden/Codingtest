@@ -1,3 +1,7 @@
-select b.ANIMAL_ID ANIMAL_ID, b.NAME  NAME
-from ANIMAL_INS a right join  ANIMAL_OUTS b on a.ANIMAL_ID = b.ANIMAL_ID
-    where a.DATETIME is null;
+select o.ANIMAL_ID, o.NAME
+    from ANIMAL_INS i  
+        right join ANIMAL_OUTS o
+        on i.ANIMAL_ID = o.ANIMAL_ID
+    where i.ANIMAL_ID is NULL
+    order by o.ANIMAL_ID, o.NAME;
+    
