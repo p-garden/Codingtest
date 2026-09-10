@@ -1,19 +1,16 @@
-import math
 def solution(n, stations, w):
     answer = 0
     prev=1
-    max_trans = 2*w+1
-    for i in stations:
-        first = max(i -w,1)
-        last = min(i+w,n)
-        gap = first - prev
-        
-        if gap >0:
-            answer += math.ceil(gap/max_trans)
+    impact = 2*w+1
+    for station in stations:
+        first = max(station-w,1)
+        last = min(station+w,n)
+        remain = first - prev
+        if remain > 0:
+            answer += (remain+impact-1) // impact
         prev = last+1
-    gap = n-prev+1
-    
-    if gap >0:
-        answer += math.ceil(gap/max_trans)
-            
+    remain = n-prev+1
+    if remain>0:
+        answer += (remain+impact-1) // impact
+
     return answer
