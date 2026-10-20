@@ -20,13 +20,10 @@ def solution(m, n, board):
             for x,y in candidate:
                 board[x][y]=' '
 
-            for y in range(n):
-                col = [board[x][y] for x in range(m) if board[x][y] != ' ']
-
-                for x in range(m - 1, -1, -1):
-                    if col:
-                        board[x][y] = col.pop()
-                    else:
-                        board[x][y] = ' '    
+            for i in range(m-1):
+                for j in range(m-1):
+                    for k in range(n):
+                        if board[j+1][k] ==' ':
+                            board[j+1][k], board[j][k]= board[j][k],' '                        
     
     return answer
