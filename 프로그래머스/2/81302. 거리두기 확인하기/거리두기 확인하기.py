@@ -1,23 +1,46 @@
 def solution(places):
     answer = []
-    
-    for room in places:
-        district = False
-        for i,row in enumerate(room):
-            for j,char in enumerate(row):
-                if district: 
+
+    directions = [(1, 0), (-1, 0), (0, 1), (0, -1)]
+
+    for place in places:
+        valid = 1
+
+        for i in range(5):
+            for j in range(5):
+                if place[i][j] != 'P':
                     continue
-                if room[i][j] =='P':
-                    if (j+1 < len(room[i]) and room[i][j+1] == 'P' or 
-                            i+1 < len(room) and room[i+1][j] == 'P' or 
-                            ((j+1 < len(room[i]) and i+1 < len(room)) and room[i+1][j+1] == 'P' and (room[i][j+1] =='O' or room[i+1][j] =='O')) or 
-                            ((j+1 < len(room[i]) and i-1 >= 0) and room[i-1][j+1] == 'P' and (room[i][j+1] =='O' or room[i-1][j] =='O')) or 
-                            (j + 2 < len(room[i]) and room[i][j+2]=='P' and  room[i][j+1] =='O') or 
-                            (i + 2 < len(room) and room[i+2][j]=='P' and  room[i+1][j] =='O')):
-                        district = True
-        if district:
-            answer.append(0)
-        else:
-            answer.append(1)
-            
+
+                # 거리 1 검사
+                for dx, dy in directions:
+                    nx, ny = i + dx, j + dy
+
+                    if 0 <= nx < 5 and 0 <= ny < 5:
+                        if place[nx][ny] == 'P':
+                            valid = 0
+
+                # 거리 2 검사: 같은 행 또는 같은 열
+                for dx, dy in [(2, 0), (-2, 0),
+                               (0, 2), (0, -2)]:
+                    nx, ny = i + dx, j + dy
+                    mx, my = i + dx // 2, j + dy // 2
+
+                    if 0 <= nx < 5 and 0 <= ny < 5:
+                        if (place[nx][ny] == 'P'
+                                and place[mx][my] != 'X'):
+                            valid = 0
+
+                # 대각선 거리 2 검사
+                for dx, dy in [(1, 1), (1, -1),
+                               (-1, 1), (-1, -1)]:
+                    nx, ny = i + dx, j + dy
+
+                    if 0 <= nx < 5 and 0 <= ny < 5:
+                        if place[nx][ny] == 'P':
+                            if (place[i][ny] != 'X'
+                                    or place[nx][j] != 'X'):
+                                valid = 0
+
+        answer.append(valid)
+
     return answer
