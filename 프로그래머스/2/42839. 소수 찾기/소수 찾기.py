@@ -6,7 +6,6 @@ def solution(numbers):
     for i in range(1,len(numbers)+1):
         for p in permutations(numbers,i):
             num.add(int(''.join(p)))
-    print(num)
     
     for n in num:
         if n < 2:
