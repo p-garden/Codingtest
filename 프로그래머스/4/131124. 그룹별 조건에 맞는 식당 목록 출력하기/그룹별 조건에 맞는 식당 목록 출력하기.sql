@@ -1,6 +1,7 @@
 -- 코드를 입력하세요
 SELECT m.MEMBER_NAME, r.REVIEW_TEXT, r.REVIEW_DATE
-    from (select MEMBER_ID, count(*) from REST_REVIEW group by MEMBER_ID order by count(*) desc LIMIT 1) t1     inner join REST_REVIEW r on t1.MEMBER_ID=r.MEMBER_ID 
-    inner join MEMBER_PROFILE m on r.MEMBER_ID=m.MEMBER_ID
-    order by r.REVIEW_DATE, r.REVIEW_TEXT;
+    FROM MEMBER_PROFILE m inner join REST_REVIEW r on m.MEMBER_ID =r.MEMBER_ID
+    where m.MEMBER_ID = (
+        SELECT MEMBER_ID FROM REST_REVIEW GROUP BY MEMBER_ID ORDER BY COUNT(MEMBER_ID) DESC LIMIT 1 )
+    ORDER BY r.REVIEW_DATE, r.REVIEW_TEXT;
     
