@@ -1,5 +1,5 @@
 -- 코드를 입력하세요
-SELECT (PRICE DIV 10000 * 10000) PRICE_GROUP, count(*) PRODUCTS
+SELECT (PRICE DIV 10000 *10000) PRICE_GROUP,count(*) PRODUCTS
     from PRODUCT
-    group by (PRICE DIV 10000 * 10000) 
-    order by (PRICE DIV 10000 * 10000)  asc;
+    group by (PRICE DIV 10000 *10000)
+    order by (PRICE DIV 10000 *10000)
