@@ -1,8 +1,6 @@
 -- 코드를 입력하세요
-SELECT I.NAME, DATE_FORMAT(I.DATETIME, "%Y-%m-%d %H:%i:%S") DATETIME
-    FROM  ANIMAL_INS I left join ANIMAL_OUTS o
-    on I.ANIMAL_ID = o.ANIMAL_ID
-    where o.DATETIME Is NULL
-    ORDER BY I.DATETIME ASC
-    LIMIT 3;
-    
+SELECT i.NAME, i.DATETIME
+    FROM ANIMAL_INS i left join ANIMAL_OUTS o
+        on i.ANIMAL_ID = o.ANIMAL_ID
+    where o.ANIMAL_ID IS NULL
+    order by i.DATETIME asc LIMIT 3;
