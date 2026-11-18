@@ -1,5 +1,5 @@
-select left(PRODUCT_CODE,2) CATEGORY, count(*) as PRODUCTS
-    from PRODUCT
-    group by CATEGORY
-    order by CATEGORY asc;
-    
+-- 코드를 입력하세요
+SELECT LEFT(PRODUCT_CODE,2 ) CATEGORY, count(*) PRODUCTS
+    FROM PRODUCT
+    group by LEFT(PRODUCT_CODE,2 )
+    ORDER BY LEFT(PRODUCT_CODE,2 );
