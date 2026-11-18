@@ -1,4 +1,5 @@
-select count(i.ID) as FISH_COUNT
-    from FISH_INFO i inner join FISH_NAME_INFO n
-        on i.FISH_TYPE = n.FISH_TYPE
-    where n.FISH_NAME in ('BASS', 'SNAPPER')
+-- 코드를 작성해주세요
+SELECT COUNT(*) FISH_COUNT
+    FROM FISH_INFO I INNER JOIN FISH_NAME_INFO N
+        ON I.FISH_TYPE = N.FISH_TYPE
+    WHERE N.FISH_NAME IN('BASS', 'SNAPPER')
