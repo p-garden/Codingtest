@@ -5,12 +5,12 @@ def solution(priorities, location):
     queue = deque(range(len(priorities)))
     
     while queue:
-        max_pri = priorities[queue[0]]
-        max_ind=0
-        for i in range(len(queue)):
-            if max_pri <priorities[queue[i]]:
-                max_ind=i
-                max_pri = priorities[queue[i]]
+        max_pri = max(priorities[idx] for idx in queue)
+        max_ind = next(
+            i for i, idx in enumerate(queue)
+            if priorities[idx] == max_pri
+        )
+        
         for i in range(0,max_ind):
             a=queue.popleft()
             queue.append(a)
