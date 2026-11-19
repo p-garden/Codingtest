@@ -2,11 +2,7 @@ from collections import deque
 
 def solution(priorities, location):
     answer = 1
-    queue = deque()
-    alpha=0
-    for i in priorities:
-        queue.append(alpha)
-        alpha+=1
+    queue = deque(range(len(priorities)))
     
     while queue:
         max_pri = priorities[queue[0]]
