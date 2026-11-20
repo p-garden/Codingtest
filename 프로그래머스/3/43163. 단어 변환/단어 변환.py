@@ -1,24 +1,21 @@
 from collections import deque
+
 def solution(begin, target, words):
-    def count_len(begin, target):
+    answer = 0
+    queue=deque()
+    def check(a,b):
         cnt=0
-        for i in range(len(begin)):
-            if begin[i] == target[i]:
+        for i in range(len(a)):
+            if a[i] ==b[i]:
                 cnt+=1
-        return cnt
-    
-    queue = deque()
-    trans = True
-    if target not in words:
-        return 0
-    n = len(words)
+        return(cnt == len(a)-1)
     queue.append((begin,0))
     while queue:
-        cur,ind = queue.popleft()
-        if cur == target:
-                return ind
+        start,dist = queue.popleft()
+        if start ==target:
+            return dist
         for word in words:
-            if count_len(cur, word) == len(cur)-1:
-                queue.append((word,ind+1))
-                
-    return -1
+            if check(word,start):
+                words.remove(word)
+                queue.append((word,dist+1))
+    return 0
