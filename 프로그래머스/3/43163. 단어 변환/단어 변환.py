@@ -15,9 +15,9 @@ def solution(begin, target, words):
     queue.append((begin,0))
     while queue:
         cur,ind = queue.popleft()
-        for word in words:
-            if cur == target:
+        if cur == target:
                 return ind
+        for word in words:
             if count_len(cur, word) == len(cur)-1:
                 queue.append((word,ind+1))
                 
