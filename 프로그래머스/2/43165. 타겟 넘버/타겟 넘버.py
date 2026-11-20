@@ -1,11 +1,11 @@
 def solution(numbers, target):
-    def dsf(index,total):
+    answer = 0
+    def dfs(index, total):
         if index == len(numbers):
-            if total == target:
+            if target == total:
                 return 1
             return 0
-        plus = dsf(index+1, total+numbers[index])
-        minus = dsf(index+1, total-numbers[index])
+        plus = dfs(index+1, total+numbers[index])
+        minus = dfs(index+1, total-numbers[index])
         return plus+minus
-    
-    return dsf(0,0)
+    return dfs(0,0)
