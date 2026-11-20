@@ -15,8 +15,9 @@ def solution(n, computers):
             if computers[i][j] == 1 and find(i) != find(j):
                 union(i,j)
 
-                
-    answer = len(set(find(i) for i in range(n)))
+    parent = set([find(i) for i in parent])
+                 
+    answer = len(parent)
     
         
     return answer
